@@ -16,86 +16,261 @@ if (isPassword) {
     error: '复制错误',
     noSupport: '浏览器不支持'
   }
-}</script></head><body><canvas id="universe"></canvas><!--#body--><div id="sidebar"><div class="author-info"><div class="author-info-avatar"><img class="author-info-avatar-img" src="/Rainbow.png"></div><div class="author-info-name">Rainbow</div><div class="author-info-description">从入门到放弃</div><div class="links-buttons"><a class="links-button button-hover" href="https://github.com/Rainbow124" target="_blank">GitHub<i class="icon-dot bg-color9"></i></a><a class="links-button button-hover" href="mailto:1228719106@qq.com" target="_blank">E-Mail<i class="icon-dot bg-color9"></i></a><a class="links-button button-hover" href="tencent://message/?uin=1228719106&amp;Site=&amp;Menu=yes" target="_blank">QQ<i class="icon-dot bg-color3"></i></a></div><div class="author-info-articles"><a class="author-info-articles-archives article-meta" href="/archives"><span class="pull-top">日志</span><span class="pull-bottom">5</span></a><a class="author-info-articles-tags article-meta" href="/tags"><span class="pull-top">标签</span><span class="pull-bottom">3</span></a><a class="author-info-articles-categories article-meta" href="/categories"><span class="pull-top">分类</span><span class="pull-bottom">5</span></a></div></div></div><div id="main-container"><header><div id="menu-outer"><i class="menu-list-icon fas fa-bars"></i><nav id="menu-inner"><a class="menu-item" href="/">首页</a><a class="menu-item" href="/tags">标签</a><a class="menu-item" href="/categories">分类</a><a class="menu-item" href="/archives">归档</a><a class="menu-item" href="/about">关于</a></nav><div class="right-info"><a class="title-name" href="/">Rainbow的杂货铺</a><span id="now-time"></span></div></div></header><div id="content-outer"><div id="content-inner"><div id="recent-posts"><!-- each post in page.posts.sort('date', -1).limit(10).toArray()--><!-- config中配置按照什么排序--><div class="recent-post-item"><a class="post-title" href="/2019/06/06/Ajax详解/">Ajax详解</a><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 更新于 2019-06-06</time></div><div class="post-content"><div class="main-content content"></div></div><a class="button-hover more" href="/2019/06/06/Ajax详解/#more">阅读全文</a></div><div class="recent-post-item"><a class="post-title" href="/2019/06/05/web前端/">闭包和原型链</a><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 更新于 2019-06-05</time><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/">前端学习</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/JavaScript/">JavaScript</a></div><div class="button-hover tags"><i class="fa fa-tag article-icon" aria-hidden="true"></i><a class="link-a" href="/tags/javaScript/">javaScript</a></div></div><div class="post-content"><div class="main-content content"><h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><h2 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h2><p>闭包：是指有权访问其他函数中局部变量的函数。</p>
-<h2 id="闭包作用"><a href="#闭包作用" class="headerlink" title="闭包作用"></a>闭包作用</h2><p>先看下面一段代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> a = <span class="number">10</span>;  <span class="comment">// 局部变量a</span></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(a);  <span class="comment">// 10</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> B; <span class="comment">// 最后返回函数B,函数B就是我们的闭包</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> result = A();   <span class="comment">// result就是整个B函数</span></span><br><span class="line">result();  <span class="comment">//</span></span><br></pre></td></tr></table></figure>
-
-<p>解释：<br>由于函数A内部的局部变量a不能被A以外的函数访问到，只能被A内部的子函数B访问到，这是由于JavaScript的链式作用域结构导致的，既然只有内部函数B才可以访问到函数A中的局部变量a，那么我们只需要把函数B作为函数A的返回值，就可以在函数A外部访问它的局部变量a！ 其中函数B就是闭包。由上可知：</p>
-<ul>
-<li>闭包就是一个函数。</li>
-<li>闭包作用：访问其他函数内部的局部变量。<br>所以，在函数内部创建子函数，最后返回子函数，这是平常开发创建闭包最常见的方式。</li>
+}</script></head><body><canvas id="universe"></canvas><!--#body--><div id="sidebar"><div class="author-info"><div class="author-info-avatar"><img class="author-info-avatar-img" src="/Rainbow.png"></div><div class="author-info-name">Rainbow</div><div class="author-info-description">从入门到放弃</div><div class="links-buttons"><a class="links-button button-hover" href="https://github.com/Rainbow124" target="_blank">GitHub<i class="icon-dot bg-color7"></i></a><a class="links-button button-hover" href="mailto:1228719106@qq.com" target="_blank">E-Mail<i class="icon-dot bg-color1"></i></a><a class="links-button button-hover" href="tencent://message/?uin=1228719106&amp;Site=&amp;Menu=yes" target="_blank">QQ<i class="icon-dot bg-color8"></i></a></div><div class="author-info-articles"><a class="author-info-articles-archives article-meta" href="/archives"><span class="pull-top">日志</span><span class="pull-bottom">6</span></a><a class="author-info-articles-tags article-meta" href="/tags"><span class="pull-top">标签</span><span class="pull-bottom">4</span></a><a class="author-info-articles-categories article-meta" href="/categories"><span class="pull-top">分类</span><span class="pull-bottom">7</span></a></div></div></div><div id="main-container"><header><div id="menu-outer"><i class="menu-list-icon fas fa-bars"></i><nav id="menu-inner"><a class="menu-item" href="/">首页</a><a class="menu-item" href="/tags">标签</a><a class="menu-item" href="/categories">分类</a><a class="menu-item" href="/archives">归档</a><a class="menu-item" href="/about">关于</a></nav><div class="right-info"><a class="title-name" href="/">Rainbow的杂货铺</a><span id="now-time"></span></div></div></header><div id="content-outer"><div id="content-inner"><div id="recent-posts"><!-- each post in page.posts.sort('date', -1).limit(10).toArray()--><!-- config中配置按照什么排序--><div class="recent-post-item"><a class="post-title" href="/2018/10/07/HTTP协议/">HTTP协议</a><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 更新于 2019-06-07</time><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/">前端学习</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/HTTP/">HTTP</a></div><div class="button-hover tags"><i class="fa fa-tag article-icon" aria-hidden="true"></i><a class="link-a" href="/tags/HTTP/">HTTP</a></div></div><div class="post-content"><div class="main-content content"><h1 id="HTTP协议介绍"><a href="#HTTP协议介绍" class="headerlink" title="HTTP协议介绍"></a>HTTP协议介绍</h1><ul>
+<li><p>HTTP: 超文本传输协议（HyperText Transfer Protocol）它是客户端和web服务器数据传输的基础，现在基本上所有的web项目都遵从HTTP协议。</p>
+<p>设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。通过HTTP或者HTTPS协议请求服务器资源</p>
+</li>
 </ul>
-<h2 id="面向对象中使用闭包读取设置私有属性"><a href="#面向对象中使用闭包读取设置私有属性" class="headerlink" title="面向对象中使用闭包读取设置私有属性"></a>面向对象中使用闭包读取设置私有属性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用构造函数创建一个Person  class Person&#123;&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name; <span class="comment">// this公有属性</span></span><br><span class="line">    <span class="keyword">var</span> age = age; <span class="comment">// var 私有属性</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过一个公有的函数来访问其私有属性</span></span><br><span class="line">    <span class="keyword">this</span>.getAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"age:"</span>+age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过一个闭包函数来修改其私有属性</span></span><br><span class="line">    <span class="keyword">this</span>.setAge = <span class="function"><span class="keyword">function</span>(<span class="params">newage</span>)</span>&#123;</span><br><span class="line">        age = newage;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//实例化一个实例对象var p1 = new Person('大锤',18);</span></span><br><span class="line"><span class="built_in">console</span>.log(p1.age); <span class="comment">// undefined  不能直接读取私有属性console.log( p1.getAge() );  // 18</span></span><br><span class="line"></span><br><span class="line">p1.setAge(<span class="string">'38'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(  p1.getAge() ); <span class="comment">// 38</span></span><br></pre></td></tr></table></figure>
-
-<p>由于var定义的属性是私有属性（局部变量），因此只能通过闭包函数去读取。</p>
+<p><img src="./HTTP%E5%8D%8F%E8%AE%AE/Http.png" alt></p>
+<ul>
+<li><p>HTTPS:超文本传输安全协议（Hypertext Transfer Protocol Secure）</p>
+<p>HTTP协议工作于客户端-服务端架构上。浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求。Web服务器有：Apache服务器，IIS服务器（Internet Information Services）等。Web服务器根据接收到的请求后，向客户端发送响应信息。</p>
+</li>
+</ul>
+<p>当我们打开浏览器，在地址栏中输入URL地址如<a href="http://baidu.com，然后我们就看到了网页。" target="_blank" rel="noopener">http://baidu.com，然后我们就看到了网页。</a> 原理是怎样的呢？实际上我们输入URL后，浏览器会向Web服务器发送了一个Request, Web服务器接到Request后进行处理，然后服务器Response回来给浏览器，浏览器解析Response中的HTML,这样我们就看到了网页</p>
+<h5 id="TCP-IP-三次握手"><a href="#TCP-IP-三次握手" class="headerlink" title="TCP/IP 三次握手"></a>TCP/IP 三次握手</h5><p>HTTP 的传输协议是 TCP/IP 协议，该协议连接是需要进行三次握手的。 </p>
+<p><strong>TCP:</strong> 传输控制协议）是一种重要的网络协议，它允许两台主机连接和交换数据流。TCP保证数据和数据包的传送顺序与发送顺序相同。当时DARPA科学家Vint Cerf和Bob Kahn在20世纪70年代设计了TCP。</p>
+<p><strong>大白话：</strong><br><img src="./HTTP%E5%8D%8F%E8%AE%AE/ThreeWayHandshake.png" alt></p>
+<p>那么为什么需要三次握手？这里引用知乎上的一个回答：</p>
+<p>这个问题的本质是, 信道不可靠, 但是通信双发需要就某个问题达成一致. 而要解决这个问题, 无论你在消息中包含什么信息, 三次通信 是理论上的最小值. 所以三次握手不是TCP本身的要求, 而是为了满足”在不可靠信道上可靠地传输信息”这一需求所导致的. 请注意这里的本质需求,信道不可靠, 数据传输要可靠. 三次达到了, 那后面你想接着握手也好, 发数据也好, 跟进行可靠信息传输的需求就没关系了. 因此,如果信道是可靠的, 即无论什么时候发出消息, 对方一定能收到, 或者你不关心是否要保证对方收到你的消息, 那就能像UDP那样直接发送消息就可以了.</p>
+<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><strong>URL</strong>: URL(Uniform Resource Locator) 统一资源定位符。<br><strong>作用</strong>:就是用于找到一个网络上的资源</p>
+<p>如：</p>
+<ul>
+<li><a href="http://xxx.com/src/1.html找到了服务器1.html资源文件" target="_blank" rel="noopener">http://xxx.com/src/1.html找到了服务器1.html资源文件</a></li>
+<li><a href="http://xxx.com/images/1.png找到了服务器2.png资源文件" target="_blank" rel="noopener">http://xxx.com/images/1.png找到了服务器2.png资源文件</a></li>
+</ul>
+<p><strong>URI</strong>:统一资源标识符（Uniform Resource Identifier）</p>
 <blockquote>
-<p>注意，由于闭包可以访问函数内的局部变量，所以此变量是不会被垃圾回收机制回收的，使用不当还可能造成会内存泄漏（未能释放已经不再使用的内存）。</p>
+<p>注意：url只是标识资源，但不知道在哪找。开发中一般只说URL.</p>
 </blockquote>
-<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="回顾创建对象的方式"><a href="#回顾创建对象的方式" class="headerlink" title="回顾创建对象的方式"></a>回顾创建对象的方式</h2><ul>
-<li>通过 <code>new Object()或{}</code>，两种本质是一样的，后者是前者的语法糖形式（简写形式）。</li>
-<li>工厂方式创建对象</li>
-<li>构造函数和原型对象（定理）<ul>
-<li>构造函数有个prototype属性，指向原型对象</li>
-<li>原型对象有个constructor属性，指向构造函数本身。</li>
-<li>通过构造函数new出来的对象，有个隐形的属性<strong>proto</strong>属性，指向原型对象。</li>
-</ul>
-</li>
-</ul>
-<h2 id="call和apply"><a href="#call和apply" class="headerlink" title="call和apply"></a>call和apply</h2><p>1、call和apply作用</p>
+<h2 id="URL基本构成"><a href="#URL基本构成" class="headerlink" title="URL基本构成"></a>URL基本构成</h2><p>URL(Uniform Resource Locator) 地址用于定位一个网络上的资源,  基本格式如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schema://host[:port]/path/[?query-string][#anchor]</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>执行函数并改变函数中的this指向。<br>2、call和apply的区别<br>语法如下所示：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fuName.call(obj,实参数<span class="number">1</span>,实参数<span class="number">2.</span>..)     </span><br><span class="line">fuName.apply(obj, [ 参数<span class="number">1</span>,参数<span class="number">2.</span>.... ] )</span><br></pre></td></tr></table></figure>
-
+<li><p>scheme       指定低层使用的协议(例如：http, https, ftp)</p>
+</li>
+<li><p>host            HTTP服务器的IP地址或者域名</p>
+</li>
+<li><p>port            HTTP服务器的默认端口是80，这种情况下端口号可以省略。如果使用了别的端口，必须指明，例如 <a href="http://www.baidu.com:8080/" target="_blank" rel="noopener">http://www.baidu.com:8080/</a></p>
+</li>
+<li><p>path            访问资源的路径</p>
+</li>
+<li><p>query-string     发送给http服务器的数据查询字符串</p>
+</li>
+<li><p>anchor           锚点</p>
 </li>
 </ul>
-<p>说明：使用对象obj伪造函数fuName中的this，于是函数fuName中的this都被obj对象伪造了。</p>
+<p>URL的一个例子</p>
+<p><a href="http://www.baidu.com/a/b/index.php?name=dachui&amp;age=33#header" target="_blank" rel="noopener">http://www.baidu.com/a/b/index.php?name=dachui&amp;age=33#header</a></p>
+<p>Schema:        http</p>
+<p>host:           <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
+<p>path:           /a/b/index.php</p>
+<p>Query String:    name=dachui&amp;age=33</p>
+<p>Anchor:         header</p>
+<h2 id="HTTP最大特点：无状态。"><a href="#HTTP最大特点：无状态。" class="headerlink" title="HTTP最大特点：无状态。"></a>HTTP最大特点：无状态。</h2><p>http协议是无状态的，同一个客户端的这次请求和上次请求是没有对应关系，对http服务器来说，它并不知道这两个请求来自同一个客户端。 为了解决这个问题， Web程序引入了Cookie机制来维护状态。</p>
+<h2 id="HTTP消息的结构"><a href="#HTTP消息的结构" class="headerlink" title="HTTP消息的结构"></a>HTTP消息的结构</h2><p>一个完整的http请求应该包含<code>请求(Request)</code>和<code>响应(Response)</code>部分。</p>
+<h3 id="请求（Request）"><a href="#请求（Request）" class="headerlink" title="请求（Request）"></a>请求（Request）</h3><p>先看Request消息的结构,   Request 消息分为4部分，</p>
 <ul>
-<li>相同点：都是改变函数内this的指向。</li>
-<li>不同点：参数传递的形式不一样。<ul>
-<li>call参数是一个一个传，需要传递几个就需要看函数需要几个形参。</li>
-<li>apply是传递一个参数数组，如果apply是使用在某个函数内,则参数数组可以使用类数组<code>arguments</code>进行代替。</li>
+<li>第一部分：Request line(请求行)</li>
+<li>第二部分：Request header(请求头部)</li>
+<li>第三部分：空行</li>
+<li>第四部分：Request body(请求数据)</li>
 </ul>
-</li>
-</ul>
-<h2 id="call和apply继承代码实现"><a href="#call和apply继承代码实现" class="headerlink" title="call和apply继承代码实现"></a>call和apply继承代码实现</h2><p>1、通过call或者apply继承的思想：<br>在子类的构造函数中，使用call或apply去伪造父类构造函数中的this，把父类构造函数中的属性添加到子类对象的自身空间中。<br>2、 代码实现<br>3、 call或apply继承带来的缺点</p>
-<p>通过call或apply只能会把父类构造函数中定义的属性复制一份到子类对象自身空间中，但是无法继承到父类原型对象上面的属性。</p>
-<p>解决办法： 通过<code>原型继承</code>来实现，可以继承父类原型对象中的属性。</p>
-<h2 id="通过原型对象继承"><a href="#通过原型对象继承" class="headerlink" title="通过原型对象继承"></a>通过原型对象继承</h2><p>1、原型对象继承的核心思想用父类对象重写子类原型对象。核心代码如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">子类.prototype = <span class="keyword">new</span> 父类()</span><br></pre></td></tr></table></figure>
+<p><img src="./HTTP%E5%8D%8F%E8%AE%AE/HttpRequest.png" alt></p>
+<p>第一行中的Method：表示请求方法,比如”POST”,”GET”, Path-to-resoure表示请求的资源， Http/version-number 表示HTTP协议的版本号。</p>
+<p>第二行：http请求头部</p>
+<p>第三行：空行</p>
+<p>第四行：请求数据（针对于post请求）</p>
+<p>1、如下get请求结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">get /a/b/index.php HTTP/1.1</span><br><span class="line">Host: www.xxx.com</span><br><span class="line">User-Agent: Mozilla/5.0</span><br></pre></td></tr></table></figure>
 
-<p>2、代码实现即内存空间图解<br>3、通过原型继承带来的问题<br>当子类的某个对象对引用类型属性如数组添加一个值的时候，实质上，我们是把此值添加在子类原型对象的属性中，这样会造成所有子类对象对此属性的读取，这是我们不允许的。<br>我们希望，每个子类自身空间中都独有一份引用属性，则当子类对象修改的时候只会影响当前对象，对其他对象没有任何影响。<br>解决办法：通过混合继承。 通过<code>伪造继承+原型继承</code>混合起来，就可以解决伪造继承和原型继承单独使用带来的问题。</p>
-<h2 id="混合继承（伪造-原型对象"><a href="#混合继承（伪造-原型对象" class="headerlink" title="混合继承（伪造+原型对象)"></a>混合继承（伪造+原型对象)</h2><p>1、伪造继承和原型继承分别带来的问题</p>
+<p>2、post请求结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">post /a/b/index.php HTTP/1.1</span><br><span class="line">Host: www.xxx.com</span><br><span class="line">User-Agent: Mozilla/5.0</span><br><span class="line"></span><br><span class="line">name=dachui&amp;age=18</span><br></pre></td></tr></table></figure>
+
+<h3 id="响应（Response）"><a href="#响应（Response）" class="headerlink" title="响应（Response）"></a>响应（Response）</h3><p>HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。</p>
+<p><img src="./HTTP%E5%8D%8F%E8%AE%AE/HttpResponse.png" alt></p>
+<p>其中状态行由<code>协议/版本号</code> <code>状态码</code> <code>状态文本</code>三部分构成</p>
+<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><p>状态码代表着http请求是否成功，还是失败等信息。</p>
+<p>状态码由三位数组构成：分为</p>
 <ul>
-<li>伪造继承带来的问题：只能将父类构造函数中的属性放到子类对象的自身空间中，但是无法继承父类原型对象上面的属性 </li>
-<li>原型继承带来的问题：子类对象只能继承父类原型对象上面的属性，但是无法把父类构造函数中的属性放到自身空间中。<br>2、通过伪造和原型对象混合继承的核心思想：</li>
-<li>通过伪造继承,把父类构造函数中的属性添加到子类对象的自身空间中</li>
-<li>通过原型继承,继承到父类原型上面的属性<br>最后把他们两者组合起来即可（形成互补）<br>如：<br><code>伪造继承</code>：它会喝酒，但不会抽烟<br><code>原型继承</code>：不会喝酒，但会抽烟组合起来，可实现又会抽烟又会喝酒。 （ps:少抽烟喝酒，年轻人身体最重要）<br>3、代码实现<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">		<span class="comment">// this.getName = function()&#123;</span></span><br><span class="line">		<span class="comment">// 	return "my name is " + this.name;</span></span><br><span class="line">		<span class="comment">// &#125;</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//在原型对象中添加一个getName的方法，用于共享</span></span><br><span class="line">	Person.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"my name is "</span> + <span class="keyword">this</span>.name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'zs'</span>,<span class="number">13</span>);</span><br><span class="line">	<span class="keyword">var</span> p2 = <span class="keyword">new</span> Person(<span class="string">'ls'</span>,<span class="number">14</span>);</span><br><span class="line">	<span class="built_in">console</span>.log( p1.getName === p2.getName);  <span class="comment">//true,说明内存空间是指向同一块地址，共享了</span></span><br><span class="line">	<span class="built_in">console</span>.log(  p1.getName() );</span><br><span class="line">	<span class="built_in">console</span>.log(  p2.getName() );</span><br></pre></td></tr></table></figure>
+<li><p>1xx: 信息，服务器收到请求，继续处理</p>
+</li>
+<li><p>2xx: 成功。 作被成功接收并处理</p>
+</li>
+<li><p>3xx: 重定向，需要进一步操作才能完成请求</p>
+</li>
+<li><p>4xx: 客户端错误，请求包含语法错误或无法完成请求</p>
+</li>
+<li><p>5xx: 服务端内部错误。<br>下面是常见的HTTP状态码（HTTP Status Code）：</p>
+</li>
+<li><p>200：请求成功</p>
+</li>
+<li><p>301：网页（元等）被永久转移到其它URL</p>
+</li>
+<li><p>304：未被修改，说明此资源被浏览器缓存了</p>
+</li>
+<li><p>404：找不到此网页（资源）</p>
+</li>
+<li><p>500：内部服务器错误<br>其他状态码解释</p>
+</li>
+</ul>
+<h5 id="Headers-头文件"><a href="#Headers-头文件" class="headerlink" title="Headers 头文件"></a>Headers 头文件</h5><p>头文件允许客户端和服务器通过请求和响应传递附加信息。 </p>
+<p>下面列出一些常用的消息头及其用法：</p>
+<ul>
+<li>Date 信息来源的日期时间</li>
+<li>Content-Type 指定服务器文档的MIME类型，帮助用户代理去处理接收到的数据。</li>
+<li>Content-Length 表示 body 的字节长度。</li>
+<li>Host 服务器的域名。</li>
+<li>User-Agent 可以用来识别发送请求的浏览器，是产品标记符和注释的清单。</li>
+<li>Accept 用户代理期望的MIME类型列表</li>
+<li>Accept-Encoding 列出用户代理支持的压缩方法</li>
+<li>Accept-Ranges 期望范围。参数：byte、none。</li>
+<li>Assess-Control-Allow-Origin 允许组织连接控制 。</li>
+<li>Age 对象在代理缓存中的时间</li>
+<li>Cache-Control 指定缓存机制</li>
+<li>Connection 是否保持网络连接打开状态。参数：keep-alive、close。</li>
+<li>ETag 特定版本资源标识符</li>
+<li>Expires 过期时间日期</li>
+<li>Server 服务器信息，如JSP、Apache等。</li>
+<li>Referer 可用于识别用户访问位置</li>
+</ul>
+<h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><ol>
+<li>http与https的区别<br> https在传输的信息上是经过了加密的，而http是明文传输。</li>
+</ol>
+<p>2.https运行机制</p>
+<ul>
+<li>客户端发起https请求</li>
+<li>服务端获取数字证书CA–服务器向数字证书认证机构申请获取数字证书CA表明服务器是合法的、无害的。</li>
+<li>传送数字证书–将数字证书传给客户端</li>
+<li>客户端解析证书–客户端向数字证书机构查询，验证服务器合法性</li>
+<li>客户端传输加密后的信息给服务端</li>
+<li>服务端解密信息</li>
+<li>服务端传输加密后的信息给客户端</li>
+<li>客户端解密信息</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>Http|MDN <a href="https://developer.mozilla.org" target="_blank" rel="noopener">https://developer.mozilla.org</a>…</li>
+<li>通俗大白话来理解TCP协议的三次握手和四次分手 <a href="https://github.com/jawil/blog" target="_blank" rel="noopener">https://github.com/jawil/blog</a>…</li>
+<li>HTTP 协议学习笔记（扫盲文）<a href="https://www.jianshu.com/p/e0a" target="_blank" rel="noopener">https://www.jianshu.com/p/e0a</a>…</li>
+</ul>
+<h3 id="使用Fiddler抓包工具跟踪http请求"><a href="#使用Fiddler抓包工具跟踪http请求" class="headerlink" title="使用Fiddler抓包工具跟踪http请求"></a>使用Fiddler抓包工具跟踪http请求</h3><ul>
+<li>安装</li>
+<li>基本使用，看请求和响应</li>
+</ul>
+<h3 id="get和post区别"><a href="#get和post区别" class="headerlink" title="get和post区别"></a>get和post区别</h3><ul>
+<li>get参数通过url传递，post放在请求体（request body）中</li>
+<li>get请求在url传递的参数有长度限制，而post没有</li>
+<li>get比post更不安全，因为参数直接显示在url地址中，所以不能传递敏感数据</li>
+<li>get请求浏览器会主动缓存，而post不会</li>
+<li>get请求参数会保存在浏览历史记录，而post请求不会</li>
+<li>get和post本质上都是tcp连接。</li>
+</ul>
+</div></div><a class="button-hover more" href="/2018/10/07/HTTP协议/#more">阅读全文</a></div><div class="recent-post-item"><a class="post-title" href="/2018/08/08/Ajax跨域问题/">Ajax跨域问题</a><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 更新于 2019-06-07</time><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/">前端学习</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/Ajax/">Ajax</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/Ajax/Ajax的跨域问题/">Ajax的跨域问题</a></div><div class="button-hover tags"><i class="fa fa-tag article-icon" aria-hidden="true"></i><a class="link-a" href="/tags/Ajax/">Ajax</a></div></div><div class="post-content"><div class="main-content content"><h1 id="Ajax跨域"><a href="#Ajax跨域" class="headerlink" title="Ajax跨域"></a>Ajax跨域</h1><h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><ol>
+<li><strong>概念</strong></li>
+</ol>
+<p>同源策略（same-origin policy）是浏览器安全的基石。目前，所有浏览器都实行这个策略。</p>
+<p>禁止ajax从一个域名请求另外一个域名上的数据。如：A网页设置的Cookie，B网页不能打开，除非这两个网页‘同源’。所谓的同源指的是‘三个相同’。</p>
+<ul>
+<li>协议相同</li>
+<li>域名相同</li>
+<li>端口相同</li>
+</ul>
+<p>举例来说，<a href="http://www.example.com/dir/page.html这个网址，协议是http://，域名是www.example.com，端口是80（默认端口可以省略）。它的同源情况如下。" target="_blank" rel="noopener">http://www.example.com/dir/page.html这个网址，协议是http://，域名是www.example.com，端口是80（默认端口可以省略）。它的同源情况如下。</a></p>
+<ul>
+<li>协议：http或者https</li>
+<li>一级（顶级）域名：example.com或者baidu.com</li>
+<li>二级域名： <a href="http://www.abc.com" target="_blank" rel="noopener">www.abc.com</a> 、image.baidu.com</li>
+<li>端口号： http协议默认的端口号是80，https默认是443</li>
+</ul>
+<p>以上四个部分，ajax请求的时候只要有一个地方不一样都算是跨域请求。</p>
+<p>判断如下的ajax请求是否跨域：</p>
+<table>
+<thead>
+<tr>
+<th>ajax所在域名</th>
+<th>ajax请求域名</th>
+<th>是否跨域，原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="http://local.com/index.html" target="_blank" rel="noopener">http://local.com/index.html</a></td>
+<td><a href="http://native.com/index.php" target="_blank" rel="noopener">http://native.com/index.php</a></td>
+<td>是，域名</td>
+</tr>
+<tr>
+<td><a href="https://www.abc.com/index.html" target="_blank" rel="noopener">https://www.abc.com/index.html</a></td>
+<td><a href="http://www.abc.com/index.php" target="_blank" rel="noopener">http://www.abc.com/index.php</a></td>
+<td>是，协议</td>
+</tr>
+<tr>
+<td><a href="https://www.abc.com:443/index.html" target="_blank" rel="noopener">https://www.abc.com:443/index.html</a></td>
+<td><a href="http://www.abc.com:88/index.php" target="_blank" rel="noopener">http://www.abc.com:88/index.php</a></td>
+<td>是，协议和端口</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li><strong>目的</strong></li>
+</ol>
+<p>同源政策的目的，是为了保护用户信息的安全，防止恶意的网站窃取数据。</p>
+<p>设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。如果其他网站可以读取A网站的Cookie，那么，如果Cookie包含隐私（密码信息，账户余额等），这些信息就会泄漏。更可怕的是，Cookie往往用来保存用户的登录状态，如果用户没有退出登录，其他网站就可以冒充用户，为所欲为，因为浏览器同时还规定，提交表单不受同源策略的限制。</p>
+<p>由此可见，“同源策略”是必需的，否则Cookie可以共享，互联网就毫无安全可言了。</p>
+<p>3.<strong>限制范围</strong></p>
+<p>随着互联网的发展，<code>同源策略</code>越来越严格。目前，如果非同源，共有三种行为受到限制。</p>
+<ul>
+<li>Cookie、LocalStorage 和 IndexDB 无法读取。</li>
+<li>DOM 无法获得</li>
+<li>Ajax 请求不能发送。</li>
+</ul>
+<p>虽然这些限制是必要的，但是有时很不方便，合理的用途也会受到影响，下面我们介绍如何规避上面三种限制。</p>
+<h1 id="解决跨域的办法"><a href="#解决跨域的办法" class="headerlink" title="解决跨域的办法"></a>解决跨域的办法</h1><p>由于浏览器的同源策略影响，ajax只能访问同域名下的文件，因此要是实现跨域一般有以下几种方案：</p>
+<ul>
+<li><p>第一种：通过服务端语言代理请求。如PHP。注：服务端语言php是没有跨域限制的。</p>
+</li>
+<li><p>第二中：通过CORS方式（XHR2方式）。这是html5提供解决跨域限制的一种办法。在请求的服务端页面中设置以下响应头即可，告诉浏览器可以跨域请求。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">header(“Access-Control-Allow-Origin:*”)； <span class="comment">// *代表允许所有域名访问</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第三种：通过jsonp实现，实质通过script标签的src属性完成跨域。</p>
+</li>
+</ul>
+<h2 id="通过php做代理完成跨域"><a href="#通过php做代理完成跨域" class="headerlink" title="通过php做代理完成跨域"></a>通过php做代理完成跨域</h2><p>1、说明<br>服务端语言没有跨域限制。因此可以使用php做代理实现第三方接口的请求。</p>
+<p>2、代码实现</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">//file_get_contents($url)可以模拟get请求，返回的是一个字符串</span></span><br><span class="line">$url = <span class="string">"http://www.weather.com.cn/data/sk/101010100.html"</span>;</span><br><span class="line"><span class="keyword">echo</span> file_get_contents($url);</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<h2 id="通过es6创建类和继承"><a href="#通过es6创建类和继承" class="headerlink" title="通过es6创建类和继承"></a>通过es6创建类和继承</h2><ul>
-<li>class 定义类</li>
-<li>extends 继承<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建父类Parentclass Parent&#123;</span></span><br><span class="line">    <span class="comment">//构造函数(不要加关键字function)</span></span><br><span class="line">    <span class="keyword">constructor</span>(name,age)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    getName()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建子类Child继承Parentclass Child extends Parent&#123;</span></span><br><span class="line">    <span class="comment">//构造函数(不要加关键字function)</span></span><br><span class="line">    <span class="keyword">constructor</span>(name,age,email)&#123;</span><br><span class="line">        <span class="comment">//执行父类的构造函数，继承name和age属性，到子类对象自身空间中</span></span><br><span class="line">        <span class="keyword">super</span>(name,age);</span><br><span class="line">        <span class="keyword">this</span>.email = email;</span><br><span class="line">    &#125;</span><br><span class="line">    getAge()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//实例化子类对象</span></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Child(<span class="string">'zs'</span>,<span class="number">33</span>,<span class="string">'zs@qq.com'</span>)</span><br><span class="line"><span class="built_in">console</span>.log( c.getAge() ); <span class="comment">// 33</span></span><br><span class="line"><span class="built_in">console</span>.log( c.getName() ); <span class="comment">//zs</span></span><br></pre></td></tr></table></figure>
+<h2 id="通过CORS方式实现跨域-XHR2方式"><a href="#通过CORS方式实现跨域-XHR2方式" class="headerlink" title="通过CORS方式实现跨域(XHR2方式)"></a>通过CORS方式实现跨域(XHR2方式)</h2><p>1、什么是CORS</p>
+<p>CORS（跨域资源共享，Cross-Origin Resource Sharing）定义一种跨域访问的机制，可以让AJAX实现跨域访问。CORS 允许一个域上的网络应用向另一个域提交AJAX跨域 请求。实现此功能非常简单，只需由被请求的服务器设置一个响应头即可.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"></span><br><span class="line">header(<span class="string">"Access-Control-Allow-Origin:*"</span>); <span class="comment">// 允许任何来源</span></span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<p>class和extends底层还是通过<code>原型对象</code>来实现的，其是原型对象的一种语法糖形式（简化写法）</p>
-<h2 id="继承小结"><a href="#继承小结" class="headerlink" title="继承小结"></a>继承小结</h2><ul>
-<li>使用混合继承（伪造+原型对象)要点：<ul>
-<li>利用伪造call或apply继承父类构造函数中的属性到子类的自身空间中</li>
-<li>利用原型对象继承父类原型对象上的属性</li>
-<li>最终将a、b两种组合起来即可实现完整的继承。</li>
-</ul>
-</li>
-</ul>
-<h2 id="继承原型链终极图解"><a href="#继承原型链终极图解" class="headerlink" title="继承原型链终极图解"></a>继承原型链终极图解</h2><blockquote>
-<p>在js继承体系中，最终都是通过对象的<code>__proto__</code>找到其对应的原型对象，最终实现继承。</p>
-</blockquote>
+<p><code>注意：IE10以下不支持上面方式</code></p>
+<p>2、代码实现<br>html部分：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	ajaxPost(<span class="string">'http://10.36.140.115/hello.php'</span>,<span class="string">'b=2'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(res);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>php部分：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    header(<span class="string">"Access-Control-Allow-Origin:*"</span>); <span class="comment">// 允许任何来源</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"宝塔镇河妖"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="通过jsonp实现跨域-前端跨域使用较多"><a href="#通过jsonp实现跨域-前端跨域使用较多" class="headerlink" title="通过jsonp实现跨域(前端跨域使用较多)"></a>通过jsonp实现跨域(前端跨域使用较多)</h2><p>1、jsonp跨域原理</p>
+<p>JSONP(JSON with Padding)就是利用<code>&lt;script&gt;</code>标签没有跨域限制的，<br>当需要通讯时，本站脚本创建一个<code>&lt;script&gt;</code>标签，src地址指向第三方的API网址，并且传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端只要定义好此函数就可以自动处理返回的数据了。</p>
 <p>注意：</p>
+<blockquote>
+<p>jsonp只针对get请求。script标签的 src属性本质就是向服务器发送get请求。<br>jsonp跟json没有关系</p>
+</blockquote>
+<p>2、代码实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">//1.创建script标签，并指定src属性</span></span><br><span class="line">		<span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">		script.src = <span class="string">"http://local.com/jsonp.php?cb=test&amp;word=js"</span>;</span><br><span class="line">		<span class="comment">//2.追加到body中去，用于发送请求</span></span><br><span class="line">		<span class="built_in">document</span>.body.appendChild(script);</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(data);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h1><p>1、为什么要使用promise</p>
+<p>解决<code>回调地狱</code>问题。即减少回调函数的层层嵌套，从而保持代码的可读性。</p>
+<p>Promise是es6中的一个异步处理对象，用它可以处理异步任务。</p>
+<p>promise对象身上有三种状态：</p>
 <ul>
-<li>函数没有返回值，默认返回undefined</li>
-<li>函数名.length 查看最少传递的实参个数。</li>
+<li>pending(进行中)</li>
+<li>fulfilled(已成功)</li>
+<li>rejected(已失败）</li>
 </ul>
-</div></div><a class="button-hover more" href="/2019/06/05/web前端/#more">阅读全文</a></div><div class="recent-post-item"><a class="post-title" href="/2018/08/05/Ajax的详解/">Ajax的详解</a><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 更新于 2019-06-06</time><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/">前端学习</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/Ajax/">Ajax</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/Ajax/Ajax技术的运用/">Ajax技术的运用</a></div><div class="button-hover tags"><i class="fa fa-tag article-icon" aria-hidden="true"></i><a class="link-a" href="/tags/Ajax/">Ajax</a></div></div><div class="post-content"><div class="main-content content"><h1 id="Ajax概述"><a href="#Ajax概述" class="headerlink" title="Ajax概述"></a>Ajax概述</h1><h2 id="Ajax介绍"><a href="#Ajax介绍" class="headerlink" title="Ajax介绍"></a>Ajax介绍</h2><p>（1）<strong>AJAX全称</strong>:</p>
+<p>Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected。</p>
+<p>2、promise基本使用,promise原型对象中有then和catch方法。</p>
+<p>3、promise解决回调地狱问题</p>
+<p>4、promise封装ajax操作</p>
+</div></div><a class="button-hover more" href="/2018/08/08/Ajax跨域问题/#more">阅读全文</a></div><div class="recent-post-item"><a class="post-title" href="/2018/08/05/Ajax详解/">Ajax的详解</a><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 更新于 2019-06-06</time><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/">前端学习</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/Ajax/">Ajax</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/Ajax/Ajax技术的运用/">Ajax技术的运用</a></div><div class="button-hover tags"><i class="fa fa-tag article-icon" aria-hidden="true"></i><a class="link-a" href="/tags/Ajax/">Ajax</a></div></div><div class="post-content"><div class="main-content content"><h1 id="Ajax概述"><a href="#Ajax概述" class="headerlink" title="Ajax概述"></a>Ajax概述</h1><h2 id="Ajax介绍"><a href="#Ajax介绍" class="headerlink" title="Ajax介绍"></a>Ajax介绍</h2><p>（1）<strong>AJAX全称</strong>:</p>
 <p>Asynchronous: 异步</p>
 <p>Javascript: 核心技术本质还是js</p>
 <p>And:</p>
@@ -107,7 +282,7 @@ if (isPassword) {
 <p>异步：煮饭同时也在烧菜。（一个时间段内，事情不按顺序）</p>
 <p>在程序中，同步和异步的区别就是在于代码的执行顺序。</p>
 <p>同步代码按照顺序运行，异步代码不按照顺序运行。</p>
-<p><img src="./Ajax/Asynchronous.png" alt></p>
+<p><img src="./Ajax%E8%AF%A6%E8%A7%A3/Asynchronous.png" alt></p>
 <hr>
 <h2 id="Ajax实际应用场景"><a href="#Ajax实际应用场景" class="headerlink" title="Ajax实际应用场景"></a>Ajax实际应用场景</h2><ul>
 <li><p>无刷新搜索:</p>
@@ -215,7 +390,7 @@ if (isPassword) {
 <ul>
 <li>json_encode(变量)：把变量转化成json格式的字符串。 前端获取到数据之后，在通过JSON.parse()进行转换即可。</li>
 </ul>
-</div></div><a class="button-hover more" href="/2018/08/05/Ajax的详解/#more">阅读全文</a></div><div class="recent-post-item"><a class="post-title" href="/2018/06/05/hexo使用攻略-添加分类及标签/">hexo使用攻略-添加分类及标签</a><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 更新于 2019-06-05</time><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/">前端学习</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/hexo-博客搭建/">hexo 博客搭建</a></div><div class="button-hover tags"><i class="fa fa-tag article-icon" aria-hidden="true"></i><a class="link-a" href="/tags/hexo/">hexo</a></div></div><div class="post-content"><div class="main-content content"><h1 id="Hexo使用攻略-添加分类及标签"><a href="#Hexo使用攻略-添加分类及标签" class="headerlink" title="Hexo使用攻略-添加分类及标签"></a>Hexo使用攻略-添加分类及标签</h1><h2 id="创建“分类”选项"><a href="#创建“分类”选项" class="headerlink" title="创建“分类”选项"></a>创建“分类”选项</h2><h3 id="1-生成“分类”页并添加tpye属性"><a href="#1-生成“分类”页并添加tpye属性" class="headerlink" title="1. 生成“分类”页并添加tpye属性"></a>1. 生成“分类”页并添加tpye属性</h3><p>打开命令行，进入博客所在文件夹。执行命令</p>
+</div></div><a class="button-hover more" href="/2018/08/05/Ajax详解/#more">阅读全文</a></div><div class="recent-post-item"><a class="post-title" href="/2018/06/05/hexo使用攻略-添加分类及标签/">hexo使用攻略-添加分类及标签</a><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 更新于 2019-06-05</time><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/">前端学习</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/hexo-博客搭建/">hexo 博客搭建</a></div><div class="button-hover tags"><i class="fa fa-tag article-icon" aria-hidden="true"></i><a class="link-a" href="/tags/hexo/">hexo</a></div></div><div class="post-content"><div class="main-content content"><h1 id="Hexo使用攻略-添加分类及标签"><a href="#Hexo使用攻略-添加分类及标签" class="headerlink" title="Hexo使用攻略-添加分类及标签"></a>Hexo使用攻略-添加分类及标签</h1><h2 id="创建“分类”选项"><a href="#创建“分类”选项" class="headerlink" title="创建“分类”选项"></a>创建“分类”选项</h2><h3 id="1-生成“分类”页并添加tpye属性"><a href="#1-生成“分类”页并添加tpye属性" class="headerlink" title="1. 生成“分类”页并添加tpye属性"></a>1. 生成“分类”页并添加tpye属性</h3><p>打开命令行，进入博客所在文件夹。执行命令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page categories</span><br></pre></td></tr></table></figure>
 
 <p>成功后会提示：</p>
@@ -320,4 +495,83 @@ if (isPassword) {
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
 <p>换hexo网站主题<br>参考地址：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a></p>
-<h2 id="在创建一个仓库，用于备份博客源码"><a href="#在创建一个仓库，用于备份博客源码" class="headerlink" title="在创建一个仓库，用于备份博客源码"></a>在创建一个仓库，用于备份博客源码</h2></div></div><a class="button-hover more" href="/2018/06/02/hexo-github-pages搭建博客/#more">阅读全文</a></div></div><div id="pagination"><div class="pagination"><span class="page-number current">1</span></div></div></div></div><div class="button-hover" id="return-top"><i class="fas fa-arrow-up" aria-hidden="true"></i></div><footer><div id="footer"><div class="button-hover" id="side-button"><i class="fas fa-arrow-right"></i></div><div class="right-content"><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i></span><span id="busuanzi_value_site_uv"></span><span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i></span><span id="busuanzi_value_site_pv"></span><span></span></div><div class="copyright">&copy;2017 ～ 2019 By Rainbow</div></div></div></footer></div><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery-3.3.1.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/velocity.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery.mCustomScrollbar.concat.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/fan.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/canvas_bg.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/utils.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/scroll.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/sidebar.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/copy.js"></script><!--script(src=url)--></body></html>
+<h2 id="在创建一个仓库，用于备份博客源码"><a href="#在创建一个仓库，用于备份博客源码" class="headerlink" title="在创建一个仓库，用于备份博客源码"></a>在创建一个仓库，用于备份博客源码</h2></div></div><a class="button-hover more" href="/2018/06/02/hexo-github-pages搭建博客/#more">阅读全文</a></div><div class="recent-post-item"><a class="post-title" href="/2018/04/05/web前端/">闭包和原型链</a><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 更新于 2019-06-07</time><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/">前端学习</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/JavaScript/">JavaScript</a></div><div class="button-hover tags"><i class="fa fa-tag article-icon" aria-hidden="true"></i><a class="link-a" href="/tags/javaScript/">javaScript</a></div></div><div class="post-content"><div class="main-content content"><h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><h2 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h2><p>闭包：是指有权访问其他函数中局部变量的函数。</p>
+<h2 id="闭包作用"><a href="#闭包作用" class="headerlink" title="闭包作用"></a>闭包作用</h2><p>先看下面一段代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> a = <span class="number">10</span>;  <span class="comment">// 局部变量a</span></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(a);  <span class="comment">// 10</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> B; <span class="comment">// 最后返回函数B,函数B就是我们的闭包</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> result = A();   <span class="comment">// result就是整个B函数</span></span><br><span class="line">result();  <span class="comment">//</span></span><br></pre></td></tr></table></figure>
+
+<p>解释：<br>由于函数A内部的局部变量a不能被A以外的函数访问到，只能被A内部的子函数B访问到，这是由于JavaScript的链式作用域结构导致的，既然只有内部函数B才可以访问到函数A中的局部变量a，那么我们只需要把函数B作为函数A的返回值，就可以在函数A外部访问它的局部变量a！ 其中函数B就是闭包。由上可知：</p>
+<ul>
+<li>闭包就是一个函数。</li>
+<li>闭包作用：访问其他函数内部的局部变量。<br>所以，在函数内部创建子函数，最后返回子函数，这是平常开发创建闭包最常见的方式。</li>
+</ul>
+<h2 id="面向对象中使用闭包读取设置私有属性"><a href="#面向对象中使用闭包读取设置私有属性" class="headerlink" title="面向对象中使用闭包读取设置私有属性"></a>面向对象中使用闭包读取设置私有属性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用构造函数创建一个Person  class Person&#123;&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name; <span class="comment">// this公有属性</span></span><br><span class="line">    <span class="keyword">var</span> age = age; <span class="comment">// var 私有属性</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过一个公有的函数来访问其私有属性</span></span><br><span class="line">    <span class="keyword">this</span>.getAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"age:"</span>+age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过一个闭包函数来修改其私有属性</span></span><br><span class="line">    <span class="keyword">this</span>.setAge = <span class="function"><span class="keyword">function</span>(<span class="params">newage</span>)</span>&#123;</span><br><span class="line">        age = newage;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//实例化一个实例对象var p1 = new Person('大锤',18);</span></span><br><span class="line"><span class="built_in">console</span>.log(p1.age); <span class="comment">// undefined  不能直接读取私有属性console.log( p1.getAge() );  // 18</span></span><br><span class="line"></span><br><span class="line">p1.setAge(<span class="string">'38'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(  p1.getAge() ); <span class="comment">// 38</span></span><br></pre></td></tr></table></figure>
+
+<p>由于var定义的属性是私有属性（局部变量），因此只能通过闭包函数去读取。</p>
+<blockquote>
+<p>注意，由于闭包可以访问函数内的局部变量，所以此变量是不会被垃圾回收机制回收的，使用不当还可能造成会内存泄漏（未能释放已经不再使用的内存）。</p>
+</blockquote>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="回顾创建对象的方式"><a href="#回顾创建对象的方式" class="headerlink" title="回顾创建对象的方式"></a>回顾创建对象的方式</h2><ul>
+<li>通过 <code>new Object()或{}</code>，两种本质是一样的，后者是前者的语法糖形式（简写形式）。</li>
+<li>工厂方式创建对象</li>
+<li>构造函数和原型对象（定理）<ul>
+<li>构造函数有个prototype属性，指向原型对象</li>
+<li>原型对象有个constructor属性，指向构造函数本身。</li>
+<li>通过构造函数new出来的对象，有个隐形的属性<strong>proto</strong>属性，指向原型对象。</li>
+</ul>
+</li>
+</ul>
+<h2 id="call和apply"><a href="#call和apply" class="headerlink" title="call和apply"></a>call和apply</h2><p>1、call和apply作用</p>
+<ul>
+<li>执行函数并改变函数中的this指向。<br>2、call和apply的区别<br>语法如下所示：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fuName.call(obj,实参数<span class="number">1</span>,实参数<span class="number">2.</span>..)     </span><br><span class="line">fuName.apply(obj, [ 参数<span class="number">1</span>,参数<span class="number">2.</span>.... ] )</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>说明：使用对象obj伪造函数fuName中的this，于是函数fuName中的this都被obj对象伪造了。</p>
+<ul>
+<li>相同点：都是改变函数内this的指向。</li>
+<li>不同点：参数传递的形式不一样。<ul>
+<li>call参数是一个一个传，需要传递几个就需要看函数需要几个形参。</li>
+<li>apply是传递一个参数数组，如果apply是使用在某个函数内,则参数数组可以使用类数组<code>arguments</code>进行代替。</li>
+</ul>
+</li>
+</ul>
+<h2 id="call和apply继承代码实现"><a href="#call和apply继承代码实现" class="headerlink" title="call和apply继承代码实现"></a>call和apply继承代码实现</h2><p>1、通过call或者apply继承的思想：<br>在子类的构造函数中，使用call或apply去伪造父类构造函数中的this，把父类构造函数中的属性添加到子类对象的自身空间中。<br>2、 代码实现<br>3、 call或apply继承带来的缺点</p>
+<p>通过call或apply只能会把父类构造函数中定义的属性复制一份到子类对象自身空间中，但是无法继承到父类原型对象上面的属性。</p>
+<p>解决办法： 通过<code>原型继承</code>来实现，可以继承父类原型对象中的属性。</p>
+<h2 id="通过原型对象继承"><a href="#通过原型对象继承" class="headerlink" title="通过原型对象继承"></a>通过原型对象继承</h2><p>1、原型对象继承的核心思想用父类对象重写子类原型对象。核心代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">子类.prototype = <span class="keyword">new</span> 父类()</span><br></pre></td></tr></table></figure>
+
+<p>2、代码实现即内存空间图解<br>3、通过原型继承带来的问题<br>当子类的某个对象对引用类型属性如数组添加一个值的时候，实质上，我们是把此值添加在子类原型对象的属性中，这样会造成所有子类对象对此属性的读取，这是我们不允许的。<br>我们希望，每个子类自身空间中都独有一份引用属性，则当子类对象修改的时候只会影响当前对象，对其他对象没有任何影响。<br>解决办法：通过混合继承。 通过<code>伪造继承+原型继承</code>混合起来，就可以解决伪造继承和原型继承单独使用带来的问题。</p>
+<h2 id="混合继承（伪造-原型对象"><a href="#混合继承（伪造-原型对象" class="headerlink" title="混合继承（伪造+原型对象)"></a>混合继承（伪造+原型对象)</h2><p>1、伪造继承和原型继承分别带来的问题</p>
+<ul>
+<li>伪造继承带来的问题：只能将父类构造函数中的属性放到子类对象的自身空间中，但是无法继承父类原型对象上面的属性 </li>
+<li>原型继承带来的问题：子类对象只能继承父类原型对象上面的属性，但是无法把父类构造函数中的属性放到自身空间中。<br>2、通过伪造和原型对象混合继承的核心思想：</li>
+<li>通过伪造继承,把父类构造函数中的属性添加到子类对象的自身空间中</li>
+<li>通过原型继承,继承到父类原型上面的属性<br>最后把他们两者组合起来即可（形成互补）<br>如：<br><code>伪造继承</code>：它会喝酒，但不会抽烟<br><code>原型继承</code>：不会喝酒，但会抽烟组合起来，可实现又会抽烟又会喝酒。 （ps:少抽烟喝酒，年轻人身体最重要）<br>3、代码实现<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">		<span class="comment">// this.getName = function()&#123;</span></span><br><span class="line">		<span class="comment">// 	return "my name is " + this.name;</span></span><br><span class="line">		<span class="comment">// &#125;</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//在原型对象中添加一个getName的方法，用于共享</span></span><br><span class="line">	Person.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"my name is "</span> + <span class="keyword">this</span>.name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'zs'</span>,<span class="number">13</span>);</span><br><span class="line">	<span class="keyword">var</span> p2 = <span class="keyword">new</span> Person(<span class="string">'ls'</span>,<span class="number">14</span>);</span><br><span class="line">	<span class="built_in">console</span>.log( p1.getName === p2.getName);  <span class="comment">//true,说明内存空间是指向同一块地址，共享了</span></span><br><span class="line">	<span class="built_in">console</span>.log(  p1.getName() );</span><br><span class="line">	<span class="built_in">console</span>.log(  p2.getName() );</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="通过es6创建类和继承"><a href="#通过es6创建类和继承" class="headerlink" title="通过es6创建类和继承"></a>通过es6创建类和继承</h2><ul>
+<li>class 定义类</li>
+<li>extends 继承<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建父类Parentclass Parent&#123;</span></span><br><span class="line">    <span class="comment">//构造函数(不要加关键字function)</span></span><br><span class="line">    <span class="keyword">constructor</span>(name,age)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    getName()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建子类Child继承Parentclass Child extends Parent&#123;</span></span><br><span class="line">    <span class="comment">//构造函数(不要加关键字function)</span></span><br><span class="line">    <span class="keyword">constructor</span>(name,age,email)&#123;</span><br><span class="line">        <span class="comment">//执行父类的构造函数，继承name和age属性，到子类对象自身空间中</span></span><br><span class="line">        <span class="keyword">super</span>(name,age);</span><br><span class="line">        <span class="keyword">this</span>.email = email;</span><br><span class="line">    &#125;</span><br><span class="line">    getAge()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//实例化子类对象</span></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Child(<span class="string">'zs'</span>,<span class="number">33</span>,<span class="string">'zs@qq.com'</span>)</span><br><span class="line"><span class="built_in">console</span>.log( c.getAge() ); <span class="comment">// 33</span></span><br><span class="line"><span class="built_in">console</span>.log( c.getName() ); <span class="comment">//zs</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>class和extends底层还是通过<code>原型对象</code>来实现的，其是原型对象的一种语法糖形式（简化写法）</p>
+<h2 id="继承小结"><a href="#继承小结" class="headerlink" title="继承小结"></a>继承小结</h2><ul>
+<li>使用混合继承（伪造+原型对象)要点：<ul>
+<li>利用伪造call或apply继承父类构造函数中的属性到子类的自身空间中</li>
+<li>利用原型对象继承父类原型对象上的属性</li>
+<li>最终将a、b两种组合起来即可实现完整的继承。</li>
+</ul>
+</li>
+</ul>
+<h2 id="继承原型链终极图解"><a href="#继承原型链终极图解" class="headerlink" title="继承原型链终极图解"></a>继承原型链终极图解</h2><blockquote>
+<p>在js继承体系中，最终都是通过对象的<code>__proto__</code>找到其对应的原型对象，最终实现继承。</p>
+</blockquote>
+<p>注意：</p>
+<ul>
+<li>函数没有返回值，默认返回undefined</li>
+<li>函数名.length 查看最少传递的实参个数。</li>
+</ul>
+</div></div><a class="button-hover more" href="/2018/04/05/web前端/#more">阅读全文</a></div></div><div id="pagination"><div class="pagination"><span class="page-number current">1</span></div></div></div></div><div class="button-hover" id="return-top"><i class="fas fa-arrow-up" aria-hidden="true"></i></div><footer><div id="footer"><div class="button-hover" id="side-button"><i class="fas fa-arrow-right"></i></div><div class="right-content"><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i></span><span id="busuanzi_value_site_uv"></span><span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i></span><span id="busuanzi_value_site_pv"></span><span></span></div><div class="copyright">&copy;2017 ～ 2019 By Rainbow</div></div></div></footer></div><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery-3.3.1.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/velocity.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery.mCustomScrollbar.concat.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/fan.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/canvas_bg.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/utils.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/scroll.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/sidebar.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/copy.js"></script><!--script(src=url)--></body></html>

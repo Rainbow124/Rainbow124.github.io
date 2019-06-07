@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Ajax跨域问题"><meta name="keywords" content="Ajax"><meta name="author" content="Rainbow,undefined"><meta name="copyright" content="Rainbow"><title>Ajax跨域问题【Rainbow的杂货铺】</title><link rel="stylesheet" href="/css/fan.css"><link rel="stylesheet" href="/css/thirdparty/jquery.mCustomScrollbar.min.css"><link rel="icon" href="/Rainbow.ico"><!-- script(src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML")--><script src="/js/mathjax/mathjax.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+});
+</script><script>var isPassword = '' || false;
+if (isPassword) {
+    if (prompt('请输入文章密码') !== '') {
+        alert('密码错误！');
+        history.back();
+    }
+}</script><script>window.GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  }
+}</script></head><body><canvas id="universe"></canvas><!--#body--><div id="sidebar"><div class="toggle-sidebar-info button-hover"><span data-toggle="文章目录">站点概览</span></div><div class="sidebar-toc"><div class="sidebar-toc-title">目录</div><div class="sidebar-toc-progress"><span class="progress-notice">您已阅读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc-progress-bar"></div></div><div class="sidebar-toc-content" id="sidebar-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ajax跨域"><span class="toc-number">1.</span> <span class="toc-text">Ajax跨域</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#同源策略"><span class="toc-number">1.1.</span> <span class="toc-text">同源策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决跨域的办法"><span class="toc-number">2.</span> <span class="toc-text">解决跨域的办法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通过php做代理完成跨域"><span class="toc-number">2.1.</span> <span class="toc-text">通过php做代理完成跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过CORS方式实现跨域-XHR2方式"><span class="toc-number">2.2.</span> <span class="toc-text">通过CORS方式实现跨域(XHR2方式)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过jsonp实现跨域-前端跨域使用较多"><span class="toc-number">2.3.</span> <span class="toc-text">通过jsonp实现跨域(前端跨域使用较多)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#promise"><span class="toc-number">3.</span> <span class="toc-text">promise</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info-avatar"><img class="author-info-avatar-img" src="/Rainbow.png"></div><div class="author-info-name">Rainbow</div><div class="author-info-description">从入门到放弃</div><div class="links-buttons"><a class="links-button button-hover" href="https://github.com/Rainbow124" target="_blank">GitHub<i class="icon-dot bg-color10"></i></a><a class="links-button button-hover" href="mailto:1228719106@qq.com" target="_blank">E-Mail<i class="icon-dot bg-color2"></i></a><a class="links-button button-hover" href="tencent://message/?uin=1228719106&amp;Site=&amp;Menu=yes" target="_blank">QQ<i class="icon-dot bg-color4"></i></a></div><div class="author-info-articles"><a class="author-info-articles-archives article-meta" href="/archives"><span class="pull-top">日志</span><span class="pull-bottom">6</span></a><a class="author-info-articles-tags article-meta" href="/tags"><span class="pull-top">标签</span><span class="pull-bottom">4</span></a><a class="author-info-articles-categories article-meta" href="/categories"><span class="pull-top">分类</span><span class="pull-bottom">7</span></a></div></div></div><div id="main-container"><header><div id="menu-outer"><i class="menu-list-icon fas fa-bars"></i><nav id="menu-inner"><a class="menu-item" href="/">首页</a><a class="menu-item" href="/tags">标签</a><a class="menu-item" href="/categories">分类</a><a class="menu-item" href="/archives">归档</a><a class="menu-item" href="/about">关于</a></nav><div class="right-info"><a class="title-name" href="/">Rainbow的杂货铺</a><span id="now-time"></span></div></div></header><div id="content-outer"><div id="content-inner"><article id="post"><div class="post-header"><div class="title">Ajax跨域问题</div><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 发表于 2018-08-08 | 更新于 2019-06-07</time><!--time.button-hover.post-date #[i.fas.fa-calendar-alt.article-icon(aria-hidden="true")] #[=__('post.modified')] #[=date(page['updated'], config.date_format)]--><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/">前端学习</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/Ajax/">Ajax</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/Ajax/Ajax的跨域问题/">Ajax的跨域问题</a></div><div class="button-hover tags"><i class="fa fa-tag article-icon" aria-hidden="true"></i><a class="link-a" href="/tags/Ajax/">Ajax</a></div></div></div><div class="main-content"><h1 id="Ajax跨域"><a href="#Ajax跨域" class="headerlink" title="Ajax跨域"></a>Ajax跨域</h1><h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><ol>
+<li><strong>概念</strong></li>
+</ol>
+<p>同源策略（same-origin policy）是浏览器安全的基石。目前，所有浏览器都实行这个策略。</p>
+<p>禁止ajax从一个域名请求另外一个域名上的数据。如：A网页设置的Cookie，B网页不能打开，除非这两个网页‘同源’。所谓的同源指的是‘三个相同’。</p>
+<ul>
+<li>协议相同</li>
+<li>域名相同</li>
+<li>端口相同</li>
+</ul>
+<p>举例来说，<a href="http://www.example.com/dir/page.html这个网址，协议是http://，域名是www.example.com，端口是80（默认端口可以省略）。它的同源情况如下。" target="_blank" rel="noopener">http://www.example.com/dir/page.html这个网址，协议是http://，域名是www.example.com，端口是80（默认端口可以省略）。它的同源情况如下。</a></p>
+<ul>
+<li>协议：http或者https</li>
+<li>一级（顶级）域名：example.com或者baidu.com</li>
+<li>二级域名： <a href="http://www.abc.com" target="_blank" rel="noopener">www.abc.com</a> 、image.baidu.com</li>
+<li>端口号： http协议默认的端口号是80，https默认是443</li>
+</ul>
+<p>以上四个部分，ajax请求的时候只要有一个地方不一样都算是跨域请求。</p>
+<p>判断如下的ajax请求是否跨域：</p>
+<table>
+<thead>
+<tr>
+<th>ajax所在域名</th>
+<th>ajax请求域名</th>
+<th>是否跨域，原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="http://local.com/index.html" target="_blank" rel="noopener">http://local.com/index.html</a></td>
+<td><a href="http://native.com/index.php" target="_blank" rel="noopener">http://native.com/index.php</a></td>
+<td>是，域名</td>
+</tr>
+<tr>
+<td><a href="https://www.abc.com/index.html" target="_blank" rel="noopener">https://www.abc.com/index.html</a></td>
+<td><a href="http://www.abc.com/index.php" target="_blank" rel="noopener">http://www.abc.com/index.php</a></td>
+<td>是，协议</td>
+</tr>
+<tr>
+<td><a href="https://www.abc.com:443/index.html" target="_blank" rel="noopener">https://www.abc.com:443/index.html</a></td>
+<td><a href="http://www.abc.com:88/index.php" target="_blank" rel="noopener">http://www.abc.com:88/index.php</a></td>
+<td>是，协议和端口</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li><strong>目的</strong></li>
+</ol>
+<p>同源政策的目的，是为了保护用户信息的安全，防止恶意的网站窃取数据。</p>
+<p>设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。如果其他网站可以读取A网站的Cookie，那么，如果Cookie包含隐私（密码信息，账户余额等），这些信息就会泄漏。更可怕的是，Cookie往往用来保存用户的登录状态，如果用户没有退出登录，其他网站就可以冒充用户，为所欲为，因为浏览器同时还规定，提交表单不受同源策略的限制。</p>
+<p>由此可见，“同源策略”是必需的，否则Cookie可以共享，互联网就毫无安全可言了。</p>
+<p>3.<strong>限制范围</strong></p>
+<p>随着互联网的发展，<code>同源策略</code>越来越严格。目前，如果非同源，共有三种行为受到限制。</p>
+<ul>
+<li>Cookie、LocalStorage 和 IndexDB 无法读取。</li>
+<li>DOM 无法获得</li>
+<li>Ajax 请求不能发送。</li>
+</ul>
+<p>虽然这些限制是必要的，但是有时很不方便，合理的用途也会受到影响，下面我们介绍如何规避上面三种限制。</p>
+<h1 id="解决跨域的办法"><a href="#解决跨域的办法" class="headerlink" title="解决跨域的办法"></a>解决跨域的办法</h1><p>由于浏览器的同源策略影响，ajax只能访问同域名下的文件，因此要是实现跨域一般有以下几种方案：</p>
+<ul>
+<li><p>第一种：通过服务端语言代理请求。如PHP。注：服务端语言php是没有跨域限制的。</p>
+</li>
+<li><p>第二中：通过CORS方式（XHR2方式）。这是html5提供解决跨域限制的一种办法。在请求的服务端页面中设置以下响应头即可，告诉浏览器可以跨域请求。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">header(“Access-Control-Allow-Origin:*”)； <span class="comment">// *代表允许所有域名访问</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第三种：通过jsonp实现，实质通过script标签的src属性完成跨域。</p>
+</li>
+</ul>
+<h2 id="通过php做代理完成跨域"><a href="#通过php做代理完成跨域" class="headerlink" title="通过php做代理完成跨域"></a>通过php做代理完成跨域</h2><p>1、说明<br>服务端语言没有跨域限制。因此可以使用php做代理实现第三方接口的请求。</p>
+<p>2、代码实现</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">//file_get_contents($url)可以模拟get请求，返回的是一个字符串</span></span><br><span class="line">$url = <span class="string">"http://www.weather.com.cn/data/sk/101010100.html"</span>;</span><br><span class="line"><span class="keyword">echo</span> file_get_contents($url);</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过CORS方式实现跨域-XHR2方式"><a href="#通过CORS方式实现跨域-XHR2方式" class="headerlink" title="通过CORS方式实现跨域(XHR2方式)"></a>通过CORS方式实现跨域(XHR2方式)</h2><p>1、什么是CORS</p>
+<p>CORS（跨域资源共享，Cross-Origin Resource Sharing）定义一种跨域访问的机制，可以让AJAX实现跨域访问。CORS 允许一个域上的网络应用向另一个域提交AJAX跨域 请求。实现此功能非常简单，只需由被请求的服务器设置一个响应头即可.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"></span><br><span class="line">header(<span class="string">"Access-Control-Allow-Origin:*"</span>); <span class="comment">// 允许任何来源</span></span><br></pre></td></tr></table></figure>
+
+<p><code>注意：IE10以下不支持上面方式</code></p>
+<p>2、代码实现<br>html部分：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	ajaxPost(<span class="string">'http://10.36.140.115/hello.php'</span>,<span class="string">'b=2'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(res);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>php部分：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    header(<span class="string">"Access-Control-Allow-Origin:*"</span>); <span class="comment">// 允许任何来源</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"宝塔镇河妖"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="通过jsonp实现跨域-前端跨域使用较多"><a href="#通过jsonp实现跨域-前端跨域使用较多" class="headerlink" title="通过jsonp实现跨域(前端跨域使用较多)"></a>通过jsonp实现跨域(前端跨域使用较多)</h2><p>1、jsonp跨域原理</p>
+<p>JSONP(JSON with Padding)就是利用<code>&lt;script&gt;</code>标签没有跨域限制的，<br>当需要通讯时，本站脚本创建一个<code>&lt;script&gt;</code>标签，src地址指向第三方的API网址，并且传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端只要定义好此函数就可以自动处理返回的数据了。</p>
+<p>注意：</p>
+<blockquote>
+<p>jsonp只针对get请求。script标签的 src属性本质就是向服务器发送get请求。<br>jsonp跟json没有关系</p>
+</blockquote>
+<p>2、代码实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">//1.创建script标签，并指定src属性</span></span><br><span class="line">		<span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">		script.src = <span class="string">"http://local.com/jsonp.php?cb=test&amp;word=js"</span>;</span><br><span class="line">		<span class="comment">//2.追加到body中去，用于发送请求</span></span><br><span class="line">		<span class="built_in">document</span>.body.appendChild(script);</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(data);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h1><p>1、为什么要使用promise</p>
+<p>解决<code>回调地狱</code>问题。即减少回调函数的层层嵌套，从而保持代码的可读性。</p>
+<p>Promise是es6中的一个异步处理对象，用它可以处理异步任务。</p>
+<p>promise对象身上有三种状态：</p>
+<ul>
+<li>pending(进行中)</li>
+<li>fulfilled(已成功)</li>
+<li>rejected(已失败）</li>
+</ul>
+<p>Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected。</p>
+<p>2、promise基本使用,promise原型对象中有then和catch方法。</p>
+<p>3、promise解决回调地狱问题</p>
+<p>4、promise封装ajax操作</p>
+</div><div class="post-copyright"><div class="post-copyright-author"><span class="post-copyright-meta">本文作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Rainbow</a></span></div><div class="post-copyright-type"><span class="post-copyright-meta">本文链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2018/08/08/Ajax跨域问题/">http://yoursite.com/2018/08/08/Ajax跨域问题/</a></span></div><div class="post-copyright-notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com">Rainbow的杂货铺</a>！</span></div></div></article><div id="pagination"><div class="prev-post pull-left"><span class="line line-top"></span><span class="line line-right"></span><span class="line line-bottom"></span><span class="line line-left"></span><a href="/2018/10/07/HTTP协议/"><i class="fas fa-angle-left">&nbsp;</i><span>HTTP协议</span></a></div><div class="next-post pull-right"><span class="line line-top"></span><span class="line line-right"></span><span class="line line-bottom"></span><span class="line line-left"></span><a href="/2018/08/05/Ajax详解/"><span>Ajax的详解</span><span>&nbsp;</span><i class="fas fa-angle-right"></i></a></div></div><!--div!= paginator()--></div></div><div class="button-hover" id="return-top"><i class="fas fa-arrow-up" aria-hidden="true"></i></div><footer><div id="footer"><div class="button-hover" id="side-button"><i class="fas fa-arrow-right"></i></div><div class="right-content"><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fas fa-file-o"></i></span><span id="busuanzi_value_page_pv"></span><span></span></div><div class="copyright">&copy;2017 ～ 2019 By Rainbow</div></div></div></footer></div><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery-3.3.1.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/velocity.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery.mCustomScrollbar.concat.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/fan.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/canvas_bg.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/utils.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/scroll.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/sidebar.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/copy.js"></script><!--script(src=url)--></body></html>

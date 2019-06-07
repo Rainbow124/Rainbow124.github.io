@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="HTTP协议"><meta name="keywords" content="HTTP"><meta name="author" content="Rainbow,undefined"><meta name="copyright" content="Rainbow"><title>HTTP协议【Rainbow的杂货铺】</title><link rel="stylesheet" href="/css/fan.css"><link rel="stylesheet" href="/css/thirdparty/jquery.mCustomScrollbar.min.css"><link rel="icon" href="/Rainbow.ico"><!-- script(src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML")--><script src="/js/mathjax/mathjax.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+});
+</script><script>var isPassword = '' || false;
+if (isPassword) {
+    if (prompt('请输入文章密码') !== '') {
+        alert('密码错误！');
+        history.back();
+    }
+}</script><script>window.GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  }
+}</script></head><body><canvas id="universe"></canvas><!--#body--><div id="sidebar"><div class="toggle-sidebar-info button-hover"><span data-toggle="文章目录">站点概览</span></div><div class="sidebar-toc"><div class="sidebar-toc-title">目录</div><div class="sidebar-toc-progress"><span class="progress-notice">您已阅读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc-progress-bar"></div></div><div class="sidebar-toc-content" id="sidebar-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP协议介绍"><span class="toc-number">1.</span> <span class="toc-text">HTTP协议介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#TCP-IP-三次握手"><span class="toc-number">1.0.0.0.1.</span> <span class="toc-text">TCP/IP 三次握手</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#URL"><span class="toc-number">1.1.</span> <span class="toc-text">URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL基本构成"><span class="toc-number">1.2.</span> <span class="toc-text">URL基本构成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP最大特点：无状态。"><span class="toc-number">1.3.</span> <span class="toc-text">HTTP最大特点：无状态。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP消息的结构"><span class="toc-number">1.4.</span> <span class="toc-text">HTTP消息的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#请求（Request）"><span class="toc-number">1.4.1.</span> <span class="toc-text">请求（Request）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应（Response）"><span class="toc-number">1.4.2.</span> <span class="toc-text">响应（Response）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态码"><span class="toc-number">1.4.3.</span> <span class="toc-text">状态码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Headers-头文件"><span class="toc-number">1.4.3.0.1.</span> <span class="toc-text">Headers 头文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTPS"><span class="toc-number">1.4.4.</span> <span class="toc-text">HTTPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Fiddler抓包工具跟踪http请求"><span class="toc-number">1.4.5.</span> <span class="toc-text">使用Fiddler抓包工具跟踪http请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get和post区别"><span class="toc-number">1.4.6.</span> <span class="toc-text">get和post区别</span></a></li></div></div><div class="author-info hide"><div class="author-info-avatar"><img class="author-info-avatar-img" src="/Rainbow.png"></div><div class="author-info-name">Rainbow</div><div class="author-info-description">从入门到放弃</div><div class="links-buttons"><a class="links-button button-hover" href="https://github.com/Rainbow124" target="_blank">GitHub<i class="icon-dot bg-color9"></i></a><a class="links-button button-hover" href="mailto:1228719106@qq.com" target="_blank">E-Mail<i class="icon-dot bg-color7"></i></a><a class="links-button button-hover" href="tencent://message/?uin=1228719106&amp;Site=&amp;Menu=yes" target="_blank">QQ<i class="icon-dot bg-color5"></i></a></div><div class="author-info-articles"><a class="author-info-articles-archives article-meta" href="/archives"><span class="pull-top">日志</span><span class="pull-bottom">6</span></a><a class="author-info-articles-tags article-meta" href="/tags"><span class="pull-top">标签</span><span class="pull-bottom">4</span></a><a class="author-info-articles-categories article-meta" href="/categories"><span class="pull-top">分类</span><span class="pull-bottom">7</span></a></div></div></div><div id="main-container"><header><div id="menu-outer"><i class="menu-list-icon fas fa-bars"></i><nav id="menu-inner"><a class="menu-item" href="/">首页</a><a class="menu-item" href="/tags">标签</a><a class="menu-item" href="/categories">分类</a><a class="menu-item" href="/archives">归档</a><a class="menu-item" href="/about">关于</a></nav><div class="right-info"><a class="title-name" href="/">Rainbow的杂货铺</a><span id="now-time"></span></div></div></header><div id="content-outer"><div id="content-inner"><article id="post"><div class="post-header"><div class="title">HTTP协议</div><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 发表于 2018-10-07 | 更新于 2019-06-07</time><!--time.button-hover.post-date #[i.fas.fa-calendar-alt.article-icon(aria-hidden="true")] #[=__('post.modified')] #[=date(page['updated'], config.date_format)]--><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/">前端学习</a><i class="fa fa-angle-right" style="margin: 0 8px;"></i><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/前端学习/HTTP/">HTTP</a></div><div class="button-hover tags"><i class="fa fa-tag article-icon" aria-hidden="true"></i><a class="link-a" href="/tags/HTTP/">HTTP</a></div></div></div><div class="main-content"><h1 id="HTTP协议介绍"><a href="#HTTP协议介绍" class="headerlink" title="HTTP协议介绍"></a>HTTP协议介绍</h1><ul>
+<li><p>HTTP: 超文本传输协议（HyperText Transfer Protocol）它是客户端和web服务器数据传输的基础，现在基本上所有的web项目都遵从HTTP协议。</p>
+<p>设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。通过HTTP或者HTTPS协议请求服务器资源</p>
+</li>
+</ul>
+<p><img src="./HTTP%E5%8D%8F%E8%AE%AE/Http.png" alt></p>
+<ul>
+<li><p>HTTPS:超文本传输安全协议（Hypertext Transfer Protocol Secure）</p>
+<p>HTTP协议工作于客户端-服务端架构上。浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求。Web服务器有：Apache服务器，IIS服务器（Internet Information Services）等。Web服务器根据接收到的请求后，向客户端发送响应信息。</p>
+</li>
+</ul>
+<p>当我们打开浏览器，在地址栏中输入URL地址如<a href="http://baidu.com，然后我们就看到了网页。" target="_blank" rel="noopener">http://baidu.com，然后我们就看到了网页。</a> 原理是怎样的呢？实际上我们输入URL后，浏览器会向Web服务器发送了一个Request, Web服务器接到Request后进行处理，然后服务器Response回来给浏览器，浏览器解析Response中的HTML,这样我们就看到了网页</p>
+<h5 id="TCP-IP-三次握手"><a href="#TCP-IP-三次握手" class="headerlink" title="TCP/IP 三次握手"></a>TCP/IP 三次握手</h5><p>HTTP 的传输协议是 TCP/IP 协议，该协议连接是需要进行三次握手的。 </p>
+<p><strong>TCP:</strong> 传输控制协议）是一种重要的网络协议，它允许两台主机连接和交换数据流。TCP保证数据和数据包的传送顺序与发送顺序相同。当时DARPA科学家Vint Cerf和Bob Kahn在20世纪70年代设计了TCP。</p>
+<p><strong>大白话：</strong><br><img src="./HTTP%E5%8D%8F%E8%AE%AE/ThreeWayHandshake.png" alt></p>
+<p>那么为什么需要三次握手？这里引用知乎上的一个回答：</p>
+<p>这个问题的本质是, 信道不可靠, 但是通信双发需要就某个问题达成一致. 而要解决这个问题, 无论你在消息中包含什么信息, 三次通信 是理论上的最小值. 所以三次握手不是TCP本身的要求, 而是为了满足”在不可靠信道上可靠地传输信息”这一需求所导致的. 请注意这里的本质需求,信道不可靠, 数据传输要可靠. 三次达到了, 那后面你想接着握手也好, 发数据也好, 跟进行可靠信息传输的需求就没关系了. 因此,如果信道是可靠的, 即无论什么时候发出消息, 对方一定能收到, 或者你不关心是否要保证对方收到你的消息, 那就能像UDP那样直接发送消息就可以了.</p>
+<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><strong>URL</strong>: URL(Uniform Resource Locator) 统一资源定位符。<br><strong>作用</strong>:就是用于找到一个网络上的资源</p>
+<p>如：</p>
+<ul>
+<li><a href="http://xxx.com/src/1.html找到了服务器1.html资源文件" target="_blank" rel="noopener">http://xxx.com/src/1.html找到了服务器1.html资源文件</a></li>
+<li><a href="http://xxx.com/images/1.png找到了服务器2.png资源文件" target="_blank" rel="noopener">http://xxx.com/images/1.png找到了服务器2.png资源文件</a></li>
+</ul>
+<p><strong>URI</strong>:统一资源标识符（Uniform Resource Identifier）</p>
+<blockquote>
+<p>注意：url只是标识资源，但不知道在哪找。开发中一般只说URL.</p>
+</blockquote>
+<h2 id="URL基本构成"><a href="#URL基本构成" class="headerlink" title="URL基本构成"></a>URL基本构成</h2><p>URL(Uniform Resource Locator) 地址用于定位一个网络上的资源,  基本格式如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schema://host[:port]/path/[?query-string][#anchor]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>scheme       指定低层使用的协议(例如：http, https, ftp)</p>
+</li>
+<li><p>host            HTTP服务器的IP地址或者域名</p>
+</li>
+<li><p>port            HTTP服务器的默认端口是80，这种情况下端口号可以省略。如果使用了别的端口，必须指明，例如 <a href="http://www.baidu.com:8080/" target="_blank" rel="noopener">http://www.baidu.com:8080/</a></p>
+</li>
+<li><p>path            访问资源的路径</p>
+</li>
+<li><p>query-string     发送给http服务器的数据查询字符串</p>
+</li>
+<li><p>anchor           锚点</p>
+</li>
+</ul>
+<p>URL的一个例子</p>
+<p><a href="http://www.baidu.com/a/b/index.php?name=dachui&amp;age=33#header" target="_blank" rel="noopener">http://www.baidu.com/a/b/index.php?name=dachui&amp;age=33#header</a></p>
+<p>Schema:        http</p>
+<p>host:           <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
+<p>path:           /a/b/index.php</p>
+<p>Query String:    name=dachui&amp;age=33</p>
+<p>Anchor:         header</p>
+<h2 id="HTTP最大特点：无状态。"><a href="#HTTP最大特点：无状态。" class="headerlink" title="HTTP最大特点：无状态。"></a>HTTP最大特点：无状态。</h2><p>http协议是无状态的，同一个客户端的这次请求和上次请求是没有对应关系，对http服务器来说，它并不知道这两个请求来自同一个客户端。 为了解决这个问题， Web程序引入了Cookie机制来维护状态。</p>
+<h2 id="HTTP消息的结构"><a href="#HTTP消息的结构" class="headerlink" title="HTTP消息的结构"></a>HTTP消息的结构</h2><p>一个完整的http请求应该包含<code>请求(Request)</code>和<code>响应(Response)</code>部分。</p>
+<h3 id="请求（Request）"><a href="#请求（Request）" class="headerlink" title="请求（Request）"></a>请求（Request）</h3><p>先看Request消息的结构,   Request 消息分为4部分，</p>
+<ul>
+<li>第一部分：Request line(请求行)</li>
+<li>第二部分：Request header(请求头部)</li>
+<li>第三部分：空行</li>
+<li>第四部分：Request body(请求数据)</li>
+</ul>
+<p><img src="./HTTP%E5%8D%8F%E8%AE%AE/HttpRequest.png" alt></p>
+<p>第一行中的Method：表示请求方法,比如”POST”,”GET”, Path-to-resoure表示请求的资源， Http/version-number 表示HTTP协议的版本号。</p>
+<p>第二行：http请求头部</p>
+<p>第三行：空行</p>
+<p>第四行：请求数据（针对于post请求）</p>
+<p>1、如下get请求结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">get /a/b/index.php HTTP/1.1</span><br><span class="line">Host: www.xxx.com</span><br><span class="line">User-Agent: Mozilla/5.0</span><br></pre></td></tr></table></figure>
+
+<p>2、post请求结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">post /a/b/index.php HTTP/1.1</span><br><span class="line">Host: www.xxx.com</span><br><span class="line">User-Agent: Mozilla/5.0</span><br><span class="line"></span><br><span class="line">name=dachui&amp;age=18</span><br></pre></td></tr></table></figure>
+
+<h3 id="响应（Response）"><a href="#响应（Response）" class="headerlink" title="响应（Response）"></a>响应（Response）</h3><p>HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。</p>
+<p><img src="./HTTP%E5%8D%8F%E8%AE%AE/HttpResponse.png" alt></p>
+<p>其中状态行由<code>协议/版本号</code> <code>状态码</code> <code>状态文本</code>三部分构成</p>
+<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><p>状态码代表着http请求是否成功，还是失败等信息。</p>
+<p>状态码由三位数组构成：分为</p>
+<ul>
+<li><p>1xx: 信息，服务器收到请求，继续处理</p>
+</li>
+<li><p>2xx: 成功。 作被成功接收并处理</p>
+</li>
+<li><p>3xx: 重定向，需要进一步操作才能完成请求</p>
+</li>
+<li><p>4xx: 客户端错误，请求包含语法错误或无法完成请求</p>
+</li>
+<li><p>5xx: 服务端内部错误。<br>下面是常见的HTTP状态码（HTTP Status Code）：</p>
+</li>
+<li><p>200：请求成功</p>
+</li>
+<li><p>301：网页（元等）被永久转移到其它URL</p>
+</li>
+<li><p>304：未被修改，说明此资源被浏览器缓存了</p>
+</li>
+<li><p>404：找不到此网页（资源）</p>
+</li>
+<li><p>500：内部服务器错误<br>其他状态码解释</p>
+</li>
+</ul>
+<h5 id="Headers-头文件"><a href="#Headers-头文件" class="headerlink" title="Headers 头文件"></a>Headers 头文件</h5><p>头文件允许客户端和服务器通过请求和响应传递附加信息。 </p>
+<p>下面列出一些常用的消息头及其用法：</p>
+<ul>
+<li>Date 信息来源的日期时间</li>
+<li>Content-Type 指定服务器文档的MIME类型，帮助用户代理去处理接收到的数据。</li>
+<li>Content-Length 表示 body 的字节长度。</li>
+<li>Host 服务器的域名。</li>
+<li>User-Agent 可以用来识别发送请求的浏览器，是产品标记符和注释的清单。</li>
+<li>Accept 用户代理期望的MIME类型列表</li>
+<li>Accept-Encoding 列出用户代理支持的压缩方法</li>
+<li>Accept-Ranges 期望范围。参数：byte、none。</li>
+<li>Assess-Control-Allow-Origin 允许组织连接控制 。</li>
+<li>Age 对象在代理缓存中的时间</li>
+<li>Cache-Control 指定缓存机制</li>
+<li>Connection 是否保持网络连接打开状态。参数：keep-alive、close。</li>
+<li>ETag 特定版本资源标识符</li>
+<li>Expires 过期时间日期</li>
+<li>Server 服务器信息，如JSP、Apache等。</li>
+<li>Referer 可用于识别用户访问位置</li>
+</ul>
+<h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><ol>
+<li>http与https的区别<br> https在传输的信息上是经过了加密的，而http是明文传输。</li>
+</ol>
+<p>2.https运行机制</p>
+<ul>
+<li>客户端发起https请求</li>
+<li>服务端获取数字证书CA–服务器向数字证书认证机构申请获取数字证书CA表明服务器是合法的、无害的。</li>
+<li>传送数字证书–将数字证书传给客户端</li>
+<li>客户端解析证书–客户端向数字证书机构查询，验证服务器合法性</li>
+<li>客户端传输加密后的信息给服务端</li>
+<li>服务端解密信息</li>
+<li>服务端传输加密后的信息给客户端</li>
+<li>客户端解密信息</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>Http|MDN <a href="https://developer.mozilla.org" target="_blank" rel="noopener">https://developer.mozilla.org</a>…</li>
+<li>通俗大白话来理解TCP协议的三次握手和四次分手 <a href="https://github.com/jawil/blog" target="_blank" rel="noopener">https://github.com/jawil/blog</a>…</li>
+<li>HTTP 协议学习笔记（扫盲文）<a href="https://www.jianshu.com/p/e0a" target="_blank" rel="noopener">https://www.jianshu.com/p/e0a</a>…</li>
+</ul>
+<h3 id="使用Fiddler抓包工具跟踪http请求"><a href="#使用Fiddler抓包工具跟踪http请求" class="headerlink" title="使用Fiddler抓包工具跟踪http请求"></a>使用Fiddler抓包工具跟踪http请求</h3><ul>
+<li>安装</li>
+<li>基本使用，看请求和响应</li>
+</ul>
+<h3 id="get和post区别"><a href="#get和post区别" class="headerlink" title="get和post区别"></a>get和post区别</h3><ul>
+<li>get参数通过url传递，post放在请求体（request body）中</li>
+<li>get请求在url传递的参数有长度限制，而post没有</li>
+<li>get比post更不安全，因为参数直接显示在url地址中，所以不能传递敏感数据</li>
+<li>get请求浏览器会主动缓存，而post不会</li>
+<li>get请求参数会保存在浏览历史记录，而post请求不会</li>
+<li>get和post本质上都是tcp连接。</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright-author"><span class="post-copyright-meta">本文作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Rainbow</a></span></div><div class="post-copyright-type"><span class="post-copyright-meta">本文链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2018/10/07/HTTP协议/">http://yoursite.com/2018/10/07/HTTP协议/</a></span></div><div class="post-copyright-notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com">Rainbow的杂货铺</a>！</span></div></div></article><div id="pagination"><div class="next-post pull-right"><span class="line line-top"></span><span class="line line-right"></span><span class="line line-bottom"></span><span class="line line-left"></span><a href="/2018/08/08/Ajax跨域问题/"><span>Ajax跨域问题</span><span>&nbsp;</span><i class="fas fa-angle-right"></i></a></div></div><!--div!= paginator()--></div></div><div class="button-hover" id="return-top"><i class="fas fa-arrow-up" aria-hidden="true"></i></div><footer><div id="footer"><div class="button-hover" id="side-button"><i class="fas fa-arrow-right"></i></div><div class="right-content"><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fas fa-file-o"></i></span><span id="busuanzi_value_page_pv"></span><span></span></div><div class="copyright">&copy;2017 ～ 2019 By Rainbow</div></div></div></footer></div><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery-3.3.1.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/velocity.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery.mCustomScrollbar.concat.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/fan.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/canvas_bg.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/utils.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/scroll.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/sidebar.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/copy.js"></script><!--script(src=url)--></body></html>
